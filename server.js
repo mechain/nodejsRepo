@@ -1,19 +1,18 @@
-require("dotenv").config();
-const databaseConnect = require("./connection.js");
-const fetchDatabase = require("./mongodbFetch");
+const express = require("express");
+const app = express();
+
+const task = require("./route");
+//creating the route '/'
 
 
 
+app.get('/' , (req, res ) => {
+    res.status(200).send("Welcome To Nodejs");
+});
 
+app.use('/',task)
 
-//fetching the database without model using the mongodb client 
-fetchDatabase();
-
-
-
-
-
-
-
-//connection with database with the help of model mongoose ORM used
-// databaseConnect(process.env.MONGO_URI)
+// creating the server listening 
+app.listen(5000 , () => {
+    console.log('Server connected')
+})
